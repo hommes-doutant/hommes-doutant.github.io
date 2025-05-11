@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obsidian Auth Redirect</title>
+    <style>
+        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; background-color: #f4f4f4; color: #333; text-align: center; }
+        .container { padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        h1 { color: #5a5a5a; }
+        p { font-size: 1.1em; }
+        .success { color: green; }
+        .error { color: red; }
+        .loader { border: 5px solid #f3f3f3; border-top: 5px solid #3498db; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin-top: 20px; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Authenticating with Obsidian...</h1>
+        <p id="status-message">Please wait while we redirect you back to Obsidian.</p>
+        <div id="loader" class="loader"></div>
+    </div>
+
+    <script>
+        function getQueryParams() {
+            const params = {};
+            const queryString = window.location.search.substring(1);
+            const regex = /([^&=]+)=([^&]*)/g;
+            let m;
+            while (m = regex.exec(queryString)) {
+                params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+            }
+            return params;
+        }
+
+        function attemptRedirect() {
+            const params = getQueryParams();
+            const statusMessageEl = document.getElementById('status-message');
+            const loaderEl = document.getElementById('loader');
+
+            if (params.code && params.state) {
+                // IMPORTANT: Use the *exact* custom scheme your plugin registers
+                const obsidianUrl = `obsidian://google-tasks-auth-callback?code=${encodeURIComponent(params.code)}&state=${encodeURIComponent(params.state)}`;
+
+                statusMessageEl.textContent = 'Redirecting to Obsidian... If Obsidian doesn\'t open automatically, you can close this page.';
+                statusMessageEl.classList.add('success');
+                
+                // Try to open the Obsidian URL
+                window.location.href = obsidianUrl;
+
+                // Fallback message in case the redirect fails (e.g., Obsidian not installed or scheme not registered)
+                setTimeout(() => {
+                    if (document.hasFocus()) { // Check if the window still has focus (meaning redirect likely failed)
+                        statusMessageEl.innerHTML = 'Could not automatically open Obsidian. Please ensure Obsidian is running and try the login again.<br/>You can now close this page.';
+                        statusMessageEl.classList.remove('success');
+                        statusMessageEl.classList.add('error');
+                        if(loaderEl) loaderEl.style.display = 'none';
+                    } else {
+                        // Assume redirect worked, offer to close
+                         statusMessageEl.textContent = 'Successfully redirected. You can close this page now.';
+                         if(loaderEl) loaderEl.style.display = 'none';
+                    }
+                }, 2000); // Wait 2 seconds for the redirect attempt
+
+            } else {
+                let errorMessage = 'Error: Missing authorization code or state from Google.';
+                if (!params.code) errorMessage += ' "code" is missing.';
+                if (!params.state) errorMessage += ' "state" is missing.';
+                if (params.error) {
+                    errorMessage += ` Google reported an error: ${params.error_description || params.error}.`;
+                }
+                statusMessageEl.textContent = errorMessage;
+                statusMessageEl.classList.add('error');
+                console.error("OAuth Redirect Error:", params);
+                if(loaderEl) loaderEl.style.display = 'none';
+            }
+        }
+
+        window.onload = attemptRedirect;
+    </script>
+</body>
+</html>
