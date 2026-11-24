@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Léa Anselin - Psychologue à Lyon (Enfants, Adultes, Couples)</title>
+    <meta name="description" content="Cabinet de psychologie de Léa Anselin à Lyon (69003). Accompagnement thérapeutique pour les enfants, les adultes et les couples. Prise de rendez-vous en ligne sur Doctolib.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Conteneur fixe pour les fonds, empêche le scroll horizontal -->
+    <div class="bg-wrapper">
+        <div class="watercolor-bg bg-1"></div>
+        <div class="watercolor-bg bg-2"></div>
+        <div class="watercolor-bg bg-3"></div>
+    </div>
+
+    <aside class="floating-breadcrumb">
+        <ul>
+            <li><a href="#accueil" class="active">Accueil</a></li>
+            <li><a href="#services">Consultations</a></li>
+            <li><a href="#apropos">À propos</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </aside>
+
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Léa Anselin</div>
+            <button class="menu-toggle" id="menu-toggle" aria-label="Ouvrir le menu">☰</button>
+        </div>
+        <!-- Menu déplacé hors du nav-container pour gérer sa largeur facilement -->
+        <div class="nav-links" id="nav-links">
+            <a href="#accueil">Accueil</a>
+            <a href="#services">Consultations</a>
+            <a href="#apropos">À propos</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <section id="accueil">
+        <div class="hero-subtitle">Psychologue</div>
+        <h1 class="hero-title">Léa Anselin</h1>
+        <p class="hero-text">Un espace d'écoute chaleureux et bienveillant pour vous accompagner, vous et votre famille, vers un mieux-être.</p>
+        
+        <a href="https://www.doctolib.fr" target="_blank" class="btn-doctolib">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            Prendre rendez-vous sur Doctolib
+        </a>
+    </section>
+
+    <section id="services">
+        <h2 class="section-title">Consultations</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <span class="service-icon">🧸</span>
+                <h3>Enfants & Adolescents</h3>
+                <p>Accompagnement des difficultés scolaires, gestion des émotions, anxiété, troubles du comportement ou soutien lors des transitions familiales.</p>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">🌿</span>
+                <h3>Adultes</h3>
+                <p>Thérapie individuelle pour surmonter l'anxiété, la dépression, les crises de vie, le stress ou pour entamer un travail de connaissance de soi.</p>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">🤝</span>
+                <h3>Couples</h3>
+                <p>Un espace neutre pour rétablir la communication, traverser une crise, comprendre les conflits récurrents et repenser la relation.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="apropos">
+        <h2 class="section-title">À propos</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Mon approche</h3>
+                <p>Je vous accueille dans mon cabinet à Lyon pour vous offrir un espace sécurisant et sans jugement. Mon approche thérapeutique s'adapte à votre singularité, en m'appuyant sur des méthodes validées scientifiquement (TCC, approches humanistes).</p>
+                
+                <h3 style="margin-top: 30px;">Parcours & Diplômes</h3>
+                <ul class="credentials-list">
+                    <li><strong>Master en Psychologie Clinique</strong> - Université de Lyon</li>
+                    <li><strong>Diplôme Universitaire</strong> en Thérapie Cognitive et Comportementale (TCC)</li>
+                    <li><strong>Expérience en pédopsychiatrie</strong> au sein d'un hôpital lyonnais</li>
+                    <li><strong>Formation continue</strong> en thérapie de couple (approche systémique)</li>
+                    <li><strong>Membre</strong> de l'Association Française de Psychologie</li>
+                </ul>
+            </div>
+            <div class="about-image-placeholder">
+                <span>Votre Photo / Cabinet</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2 class="section-title">Contact</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span class="contact-icon">📍</span>
+                    <div class="contact-details">
+                        <h4>Adresse du cabinet</h4>
+                        <p>9 rue Professeur Florence<br>69003 LYON</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">📞</span>
+                    <div class="contact-details">
+                        <h4>Téléphone</h4>
+                        <p><a href="tel:+33775712386">07 75 71 23 86</a></p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">📅</span>
+                    <div class="contact-details">
+                        <h4>Prise de rendez-vous</h4>
+                        <p>En ligne 24h/24 via <a href="https://www.doctolib.fr" target="_blank" style="color: var(--primary-purple); font-weight: bold; text-decoration: underline;">Doctolib</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-cta">
+                <h3>Prêt(e) à commencer ?</h3>
+                <p>La prise de rendez-vous se fait directement en ligne pour une plus grande flexibilité.</p>
+                <a href="https://www.doctolib.fr" target="_blank" class="btn-doctolib">Accéder à l'agenda</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p id="footer-year">&copy; Léa Anselin - Psychologue à Lyon. Tous droits réservés.</p>
+        <p style="margin-top: 10px; font-size: 0.8rem;">Mentions légales | Politique de confidentialité</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
