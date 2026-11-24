@@ -14,7 +14,6 @@
 </head>
 <body>
 
-    <!-- Conteneur fixe pour les fonds, empêche le scroll horizontal -->
     <div class="bg-wrapper">
         <div class="watercolor-bg bg-1"></div>
         <div class="watercolor-bg bg-2"></div>
@@ -35,7 +34,6 @@
             <div class="logo">Léa Anselin</div>
             <button class="menu-toggle" id="menu-toggle" aria-label="Ouvrir le menu">☰</button>
         </div>
-        <!-- Menu déplacé hors du nav-container pour gérer sa largeur facilement -->
         <div class="nav-links" id="nav-links">
             <a href="#accueil">Accueil</a>
             <a href="#services">Consultations</a>
@@ -45,19 +43,27 @@
     </nav>
 
     <section id="accueil">
-        <div class="hero-subtitle">Psychologue</div>
-        <h1 class="hero-title">Léa Anselin</h1>
-        <p class="hero-text">Un espace d'écoute chaleureux et bienveillant pour vous accompagner, vous et votre famille, vers un mieux-être.</p>
+        <!-- Nouveau conteneur pour le texte -->
+        <div class="hero-text-container">
+            <div class="hero-subtitle">Psychologue</div>
+            <h1 class="hero-title">Léa Anselin</h1>
+            <p class="hero-text">Un espace d'écoute chaleureux et bienveillant pour vous accompagner, vous et votre famille, vers un mieux-être.</p>
+            
+            <a href="https://www.doctolib.fr/psychologue/amiens/lea-anselin" target="_blank" class="btn-doctolib">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                Prendre rendez-vous sur Doctolib
+            </a>
+        </div>
         
-        <a href="https://www.doctolib.fr" target="_blank" class="btn-doctolib">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                <line x1="16" y1="2" x2="16" y2="6"></line>
-                <line x1="8" y1="2" x2="8" y2="6"></line>
-                <line x1="3" y1="10" x2="21" y2="10"></line>
-            </svg>
-            Prendre rendez-vous sur Doctolib
-        </a>
+        <!-- Nouveau conteneur pour l'image de Lyon -->
+        <div class="hero-image-container">
+            <img src="hero.jpg" alt="Paysage de la ville de Lyon" class="hero-img">
+        </div>
     </section>
 
     <section id="services">
@@ -90,15 +96,18 @@
                 
                 <h3 style="margin-top: 30px;">Parcours & Diplômes</h3>
                 <ul class="credentials-list">
-                    <li><strong>Master en Psychologie Clinique</strong> - Université de Lyon</li>
-                    <li><strong>Diplôme Universitaire</strong> en Thérapie Cognitive et Comportementale (TCC)</li>
-                    <li><strong>Expérience en pédopsychiatrie</strong> au sein d'un hôpital lyonnais</li>
-                    <li><strong>Formation continue</strong> en thérapie de couple (approche systémique)</li>
-                    <li><strong>Membre</strong> de l'Association Française de Psychologie</li>
+                    <li><strong>Master en psychologie : psychopathologie clinique psychanalytique</strong> - Université Paris 13 - Sorbonne Paris-Nord (2022)</li>
+                    <li><strong>Stagiaire - Hôpital de jour CMP Joan Rivière</strong> - Montrouge (2021 - 2022)</li>
+                    <li><strong>Expériences en institutions pédopsychiatriques</strong></li>
+                    <li><strong>Expérience dans le milieu judiciaire</strong> - Association APREMIS</li>
+                    <li><strong>Compétences en clinique du traumatisme</strong> et accueil de couples en thérapie</li>
+                    <li><strong>Possibilité d'effectuer des obligations de soin</strong></li>
                 </ul>
             </div>
-            <div class="about-image-placeholder">
-                <span>Votre Photo / Cabinet</span>
+            
+            <!-- Remplacement du placeholder par l'image portrait -->
+            <div class="portrait-container">
+                <img src="portrait.jpg" alt="Portrait de Léa Anselin, Psychologue" class="portrait-img">
             </div>
         </div>
     </section>
@@ -124,15 +133,29 @@
                 <div class="contact-item">
                     <span class="contact-icon">📅</span>
                     <div class="contact-details">
+                        <h4>Horaires</h4>
+                        <p>Mercredi : 13h00 - 18h00<br>Jeudi & Vendredi : 11h00 - 13h00, 14h00 - 18h00<br>Samedi : 11h00 - 13h00, 14h00 - 18h00</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">💳</span>
+                    <div class="contact-details">
+                        <h4>Tarifs & Paiement</h4>
+                        <p>Consultation enfant/adolescent/adulte : 50 € à 70 €<br>Consultation couple : 70 €<br>Obligation de soin : 40 €<br><small>Chèques et espèces uniquement (cartes bancaires non acceptées). Non remboursé par l'Assurance Maladie.</small></p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">📅</span>
+                    <div class="contact-details">
                         <h4>Prise de rendez-vous</h4>
-                        <p>En ligne 24h/24 via <a href="https://www.doctolib.fr" target="_blank" style="color: var(--primary-purple); font-weight: bold; text-decoration: underline;">Doctolib</a></p>
+                        <p>En ligne 24h/24 via <a href="https://www.doctolib.fr/psychologue/amiens/lea-anselin" target="_blank" style="color: var(--primary-purple); font-weight: bold; text-decoration: underline;">Doctolib</a></p>
                     </div>
                 </div>
             </div>
             <div class="contact-cta">
                 <h3>Prêt(e) à commencer ?</h3>
                 <p>La prise de rendez-vous se fait directement en ligne pour une plus grande flexibilité.</p>
-                <a href="https://www.doctolib.fr" target="_blank" class="btn-doctolib">Accéder à l'agenda</a>
+                <a href="https://www.doctolib.fr/psychologue/amiens/lea-anselin" target="_blank" class="btn-doctolib">Accéder à l'agenda</a>
             </div>
         </div>
     </section>

@@ -12,10 +12,14 @@
     --font-logo: 'Great Vibes', cursive;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* Reset strict anti-scroll horizontal */
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
 
 html { 
-    /* Le navigateur gère le défilement fluide nativement (le plus performant) */
     scroll-behavior: smooth;
     background-color: var(--bg-color);
 }
@@ -24,7 +28,6 @@ body {
     font-family: var(--font-body);
     color: var(--text-main);
     line-height: 1.6;
-    /* "clip" est meilleur que "hidden" car il ne casse pas le smooth scroll */
     overflow-x: clip; 
     position: relative;
 }
@@ -36,8 +39,11 @@ a { text-decoration: none; color: inherit; }
 .bg-wrapper {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    overflow: hidden; z-index: -1; pointer-events: none;
+    overflow: hidden;
+    z-index: -1;
+    pointer-events: none;
 }
+
 .watercolor-bg { position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.6; }
 .bg-1 { top: -10%; left: -10%; width: 500px; height: 500px; background: var(--pastel-lilac); }
 .bg-2 { top: 40%; right: -10%; width: 400px; height: 400px; background: var(--pastel-peach); }
@@ -47,13 +53,17 @@ a { text-decoration: none; color: inherit; }
 nav {
     position: fixed; top: 0; left: 0; width: 100%;
     background-color: rgba(253, 251, 247, 0.95); 
-    backdrop-filter: blur(10px);
-    z-index: 1000; box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+    backdrop-filter: blur(10px); 
+    z-index: 1000; 
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
 }
+
 .nav-container {
     max-width: 1200px; margin: 0 auto; padding: 15px 20px;
-    display: flex; justify-content: space-between; align-items: center; min-height: 70px;
+    display: flex; justify-content: space-between; align-items: center;
+    min-height: 70px;
 }
+
 .logo { font-family: var(--font-logo); font-size: clamp(1.8rem, 4vw, 2.2rem); color: var(--primary-purple-dark); }
 .menu-toggle { display: none; background: none; border: none; font-size: 1.8rem; color: var(--primary-purple-dark); cursor: pointer; }
 
@@ -70,6 +80,7 @@ nav {
     box-shadow: -2px 0 15px rgba(139, 123, 163, 0.1); border: 1px solid rgba(235, 228, 242, 0.8); border-right: none;
     z-index: 999;
 }
+
 .floating-breadcrumb ul { list-style: none; display: flex; flex-direction: column; gap: 15px; align-items: flex-end; }
 .floating-breadcrumb a {
     font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;
@@ -80,10 +91,8 @@ nav {
     background-color: #d4d4d4; transition: all 0.3s ease;
 }
 
-/* CORRECTION MAJEURE ICI : on n'utilise pas font-weight pour éviter le saut */
 .floating-breadcrumb a.active { 
     color: var(--primary-purple-dark); 
-    /* Astuce : text-shadow simule le gras sans changer la largeur du texte */
     text-shadow: 0.5px 0 0 currentColor, 0 0 0.5px currentColor; 
 }
 .floating-breadcrumb a.active::after {
@@ -94,16 +103,44 @@ nav {
 /* Sections Communes */
 section { 
     padding: 120px 20px 80px; max-width: 1000px; margin: 0 auto; position: relative; 
-    /* Décale l'ancre pour que le titre ne soit pas caché par le menu fixe */
-    scroll-margin-top: 80px; 
+    scroll-margin-top: 90px; 
 }
 .section-title { text-align: center; font-size: clamp(2rem, 5vw, 2.5rem); margin-bottom: 50px; }
 
-/* Section Accueil */
-#accueil { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+/* --- SECTION ACCUEIL (HERO) --- */
+#accueil { 
+    min-height: 100vh; 
+    display: flex; 
+    flex-direction: row;
+    align-items: center; 
+    justify-content: space-between; 
+    text-align: left;
+    gap: 50px;
+}
+
+.hero-text-container { flex: 1; }
 .hero-subtitle { font-size: clamp(1rem, 2vw, 1.2rem); color: var(--primary-purple); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 10px; font-weight: 700; }
-.hero-title { font-family: var(--font-logo); font-size: clamp(3.5rem, 10vw, 5.5rem); color: var(--primary-purple-dark); margin-bottom: 20px; line-height: 1.2; }
-.hero-text { font-size: clamp(1rem, 2.5vw, 1.2rem); color: var(--text-light); max-width: 600px; margin-bottom: 40px; }
+.hero-title { font-family: var(--font-logo); font-size: clamp(3.5rem, 8vw, 5.5rem); color: var(--primary-purple-dark); margin-bottom: 20px; line-height: 1.2; }
+.hero-text { font-size: clamp(1rem, 2vw, 1.2rem); color: var(--text-light); max-width: 600px; margin-bottom: 40px; }
+
+/* CORRECTION ASPECT RATIO ICI */
+.hero-image-container {
+    flex: 1;
+    width: 100%;
+    aspect-ratio: 3 / 2; /* S'adapte parfaitement au format 2400x1600 sans déformer */
+    max-height: 600px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    border: 8px solid var(--white);
+}
+
+.hero-img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; /* Remplit le conteneur sans jamais déformer l'image */
+    object-position: center; 
+}
 
 /* Bouton Doctolib */
 .btn-doctolib {
@@ -135,11 +172,13 @@ section {
 .credentials-list { list-style: none; margin-top: 20px; }
 .credentials-list li { margin-bottom: 10px; padding-left: 25px; position: relative; }
 .credentials-list li::before { content: '✧'; position: absolute; left: 0; color: var(--primary-purple); font-size: 1.2rem; }
-.about-image-placeholder {
-    flex: 1; height: 400px; background: linear-gradient(135deg, var(--pastel-lilac), var(--pastel-peach));
-    border-radius: 20px; display: flex; justify-content: center; align-items: center;
-    color: var(--primary-purple-dark); font-family: var(--font-logo); font-size: 2rem;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+
+.portrait-container { flex: 1; display: flex; justify-content: center; align-items: center; }
+.portrait-img {
+    width: 100%; max-width: 350px; aspect-ratio: 1 / 1;
+    border-radius: 50%; object-fit: cover;
+    box-shadow: 0 15px 35px rgba(139, 123, 163, 0.2);
+    border: 10px solid var(--white);
 }
 
 /* Contact */
@@ -173,16 +212,43 @@ footer { text-align: center; padding: 40px 20px; background-color: var(--white);
     .menu-toggle { display: block; }
     
     .nav-links { 
-        display: none; flex-direction: column; position: fixed; 
-        top: 70px; left: 0; width: 100%; background-color: var(--bg-color); 
-        padding: 20px; box-shadow: 0 10px 15px rgba(0,0,0,0.05); text-align: center;
-        border-top: 1px solid #eee; gap: 15px;
+        display: none; 
+        flex-direction: column; 
+        position: fixed; 
+        top: 70px; 
+        left: 0; 
+        width: 100%; 
+        background-color: var(--bg-color); 
+        padding: 20px; 
+        box-shadow: 0 10px 15px rgba(0,0,0,0.05); 
+        text-align: center;
+        border-top: 1px solid #eee;
+        gap: 15px;
     }
     .nav-links.active { display: flex; }
     .nav-links a { font-size: 1rem; padding: 5px 0; }
     
+    #accueil {
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+        gap: 30px;
+        padding-top: 100px;
+    }
+    
+    .hero-text { margin: 0 auto 30px auto; }
+    
+    /* Sur mobile, on adapte l'aspect ratio pour qu'il prenne moins de place en hauteur */
+    .hero-image-container {
+        width: 100%;
+        aspect-ratio: 4 / 3; 
+        max-height: 400px;
+    }
+
     .about-content { flex-direction: column; gap: 30px; }
-    .about-image-placeholder { width: 100%; height: 300px; order: -1; }
+    .portrait-container { order: -1; }
+    .portrait-img { max-width: 250px; }
+    
     .contact-container { padding: 30px 20px; flex-direction: column; }
     section { padding: 100px 15px 60px; }
     .credentials-list li { text-align: left; }
